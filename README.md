@@ -14,7 +14,7 @@
 * 路由设计
     * POST /api/signup: 用户注册
     * POST /api/user/accesstoken: 账号验证,获取token
-    * GET /api/user/user_info: 获得用户信息,需验证
+    * GET /api/user/users/info: 获得用户信息,需验证
 
 * user 模型设计
     * name : 用户名
@@ -343,7 +343,7 @@ GET访问[localhost:8080/api/users/info](),同时将我们的token值在`Header`
 
 ![](http://of30nsqpd.bkt.clouddn.com/Snip20161201_9.png)
 
-如果token值不正确，则放回 Unauthorized 并拒绝访问请求。到这里我们的权限验证功能也就基本实现了(喜大普奔~)。
+如果token值不正确，则返回 Unauthorized 并拒绝访问请求。到这里我们的权限验证功能也就基本实现了(喜大普奔~)。
 ![](http://of30nsqpd.bkt.clouddn.com/Snip20161201_10.png)
 
 ### 总结
