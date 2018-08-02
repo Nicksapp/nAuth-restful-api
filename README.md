@@ -1,5 +1,9 @@
 ## Node.js+Mongoose的RestfulApi的用户token权限验证
 
+### 关于安全性方面的建议
+
+可以参考这篇总结 [开发安全的 API 所需要核对的清单]https://github.com/shieldfy/API-Security-Checklist/blob/master/README-zh.md
+
 ### 安装
 `git clone https://github.com/Nicksapp/nAuth-restful-api.git`
 
