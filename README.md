@@ -276,7 +276,7 @@ router.post('/user/accesstoken', (req, res) => {
 // passport-http-bearer token 中间件验证
 // 通过 header 发送 Authorization -> Bearer  + token
 // 或者通过 ?access_token = token
-router.get('/users/info',
+router.get('/user/user_info',
   passport.authenticate('bearer', { session: false }),
   function(req, res) {
     res.json({username: req.user.name});
@@ -325,30 +325,30 @@ module.exports = function(passport) {
 `node index`运行我们的本地服务器，访问 [localhost:8080/]()
 应该就可以看到我们所返回的初始json值了，然我们继续深入测试。
 
-![](http://of30nsqpd.bkt.clouddn.com/Snip20161201_2.png)
+![](https://haitao.nos.netease.com/942f5170-3e46-4214-9841-dbb60344366f_1030_680.jpg)
 
 POST访问[localhost:8080/api/signup](),我们来注册一个新用户，注意要设置`body`的`Content-Type`为`x-www-form-urlencoded` 以便我们的`body-parser`能够正确解析,好的我们成功模拟创建了我们的新用户。
 
-![](http://of30nsqpd.bkt.clouddn.com/Snip20161201_4.png)
+![](https://haitao.nos.netease.com/3d7edd98-070f-495f-a7fd-270e9eab7133_1030_680.jpg)
 
 连接一下数据库看下我们的用户信息是否也被正确存储(注:我使用的是MongoChef,十分强大MongoDB数据库管理软件),我们可以看到,我的password也被正确加密保存了。
 
-![](http://of30nsqpd.bkt.clouddn.com/Snip20161201_5.png)
+![](https://haitao.nos.netease.com/32ddbcae-0029-48f9-bf62-0b90ff8d5948_1050_712.jpg)
 
 接着POST访问[localhost:8080/api/user/accesstoken](),来为我的用户获得专属token，POST过程与注册相关,可以看到也正确生成我们的token值。
 
-![](http://of30nsqpd.bkt.clouddn.com/Snip20161201_6.png)
+![](https://haitao.nos.netease.com/854a96d4-0785-4631-b67a-790d13e73bd7_1030_680.jpg)
 
 再看下我们的数据库中的用户信息，token值也被存入了进来，便于我们之后进行权限验证。
 
-![](http://of30nsqpd.bkt.clouddn.com/Snip20161201_11.png)
+![](https://haitao.nos.netease.com/e8ce921f-d003-494e-aff5-06057a14e8bc_1050_712.jpg)
 
-GET访问[localhost:8080/api/users/info](),同时将我们的token值在`Header`中以 `Authorization: token` 传入,正确获得用户名则表示我们访问请求通过了验证。
+GET访问[localhost:8080/api/user/user_info](),同时将我们的token值在`Header`中以 `Authorization: token` 传入,正确获得用户名则表示我们访问请求通过了验证。
 
-![](http://of30nsqpd.bkt.clouddn.com/Snip20161201_9.png)
+![](https://haitao.nos.netease.com/e53d21d8-0f60-40d1-b698-ee966657dc56_1030_680.jpg)
 
-如果token值不正确，则返回 Unauthorized 并拒绝访问请求。到这里我们的权限验证功能也就基本实现了(喜大普奔~)。
-![](http://of30nsqpd.bkt.clouddn.com/Snip20161201_10.png)
+如果token值不正确，则返回HTTP状态码 401 Unauthorized 并拒绝访问请求。到这里我们的权限验证功能也就基本实现了。
+![](https://haitao.nos.netease.com/a1b2811d-84af-4d0d-b0e9-5076ba91b261_1030_680.jpg)
 
 ### 总结
 希望在看完这篇教程后能够对你在RESTful Api开发上有所启发，小生才疏学浅，过程中有什么不足的地方也欢迎指正。
