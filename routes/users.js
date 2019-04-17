@@ -41,7 +41,7 @@ router.post('/user/accesstoken', (req, res) => {
       user.comparePassword(req.body.password, (err, isMatch) => {
         if (isMatch && !err) {
           var token = jwt.sign({name: user.name}, config.secret,{
-            expiresIn: 10080
+            expiresIn: 10080 // token 过期销毁时间设置
           });
           user.token = token;
           user.save(function(err){
