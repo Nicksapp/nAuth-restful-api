@@ -18,7 +18,7 @@
 * 路由设计
     * POST /api/signup: 用户注册
     * POST /api/user/accesstoken: 账号验证,获取token
-    * GET /api/users/info: 获得用户信息,需验证
+    * GET /api/user/user_info: 获得用户信息,需验证
 
 * user 模型设计
     * name : 用户名
